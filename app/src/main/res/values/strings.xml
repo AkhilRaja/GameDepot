@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GameDepot</string>
+    <string name="fragmentText">Fragment Text</string>
 </resources>
