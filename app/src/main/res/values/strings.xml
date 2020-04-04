@@ -10,6 +10,7 @@
     <string name="cd_home">Go Home</string>
     <string name="cd_list">View upcoming games</string>
     <string name="cd_form">View your profile</string>
+    <string name="list_fragment">List Fragment Text</string>
 
 
 </resources>
