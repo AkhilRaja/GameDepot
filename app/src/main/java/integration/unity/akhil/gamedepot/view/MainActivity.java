@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected  void setupBottomNavigationBar(){
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);
 
-        NavController navController = Navigation.findNavController(this,R.id.
+
 
     }
 }
