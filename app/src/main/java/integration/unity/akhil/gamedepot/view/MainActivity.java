@@ -1,10 +1,14 @@
 package integration.unity.akhil.gamedepot.view;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
 
 import android.os.Bundle;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import integration.unity.akhil.gamedepot.R;
 
@@ -14,13 +18,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
 
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        setupBottomNavigationBar();
 
-        MainFragment mainFragment = new MainFragment();
+    }
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .add(R.id.main_fragment,mainFragment)
-                .commit();
+    protected  void setupBottomNavigationBar(){
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);
+
+        NavController navController = Navigation.findNavController(this,R.id.
+
     }
 }

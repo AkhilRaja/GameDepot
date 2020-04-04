@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">GameDepot</string>
     <string name="fragmentText">Fragment Text</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_home">Home</string>
+    <string name="title_list">Upcoming</string>
+    <string name="title_register">Profile</string>
+    <string name="cd_home">Go Home</string>
+    <string name="cd_list">View upcoming games</string>
+    <string name="cd_form">View your profile</string>
+
+
 </resources>
