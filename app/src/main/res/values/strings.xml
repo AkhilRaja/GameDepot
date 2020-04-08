@@ -11,6 +11,10 @@
     <string name="cd_list">View upcoming games</string>
     <string name="cd_form">View your profile</string>
     <string name="list_fragment">List Fragment Text</string>
+    <string name="game_category">Game Category</string>
+    <string name="game_category">Game Category</string>
+    <string name="death_stranding">Death Stranding</string>
+    <string name="genre">Genre</string>
 
 
 </resources>
