@@ -8,12 +8,12 @@
     <include app:graph="@navigation/mainlist" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="integration.unity.akhil.gamedepot.view.Profile"
+        android:name="integration.unity.akhil.gamedepot.view.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/registrationFragment"
-        android:name="integration.unity.akhil.gamedepot.view.Registration"
+        android:name="integration.unity.akhil.gamedepot.view.RegistrationFragment"
         android:label="fragment_registration"
         tools:layout="@layout/fragment_registration" />
 </navigation>
