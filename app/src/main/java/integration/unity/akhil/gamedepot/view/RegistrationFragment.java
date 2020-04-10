@@ -13,10 +13,10 @@ import integration.unity.akhil.gamedepot.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Registration#newInstance} factory method to
+ * Use the {@link RegistrationFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Registration extends Fragment {
+public class RegistrationFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -26,7 +26,7 @@ public class Registration extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Registration() {
+    public RegistrationFragment() {
         // Required empty public constructor
     }
 
@@ -39,8 +39,8 @@ public class Registration extends Fragment {
      * @return A new instance of fragment Registration.
      */
     // TODO: Rename and change types and number of parameters
-    public static Registration newInstance(String param1, String param2) {
-        Registration fragment = new Registration();
+    public static RegistrationFragment newInstance(String param1, String param2) {
+        RegistrationFragment fragment = new RegistrationFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

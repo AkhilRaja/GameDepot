@@ -17,6 +17,7 @@ import integration.unity.akhil.gamedepot.R;
 import integration.unity.akhil.gamedepot.api.ApiInterface;
 import integration.unity.akhil.gamedepot.api.RetrofitApiClient;
 import integration.unity.akhil.gamedepot.models.Games;
+import integration.unity.akhil.gamedepot.utils.Constants;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,29 +27,35 @@ public class MainActivity extends AppCompatActivity {
     ApiInterface apiService =
             RetrofitApiClient.getClient().create(ApiInterface.class);
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupBottomNavigationBar();
 
-
-
-        Call<Games> call = apiService.getPopularGames("2019-01-01,2019-12-31","-added",1);
+        //Retrofit Calls for the Most Popular Games
+        Call<Games> call = apiService.getPopularGames(Constants.Popular.DATE,Constants.Popular.ORDERING,Constants.PAGE_SIZE);
         call.enqueue(new Callback<Games>() {
             @Override
             public void onResponse(Call<Games> call, Response<Games> response) {
                 int statusCode = response.code();
                 Log.d("API",statusCode + "");
-                Log.d("Data",response.body().getResults().get(0).getName());
+
+                //TODO: Parse the response into a Games object to map with Views
             }
 
             @Override
             public void onFailure(Call<Games> call, Throwable t) {
                 Log.e("API","Error" + t.getLocalizedMessage() + t.getMessage());
+                //TODO: Handle errors
             }
         });
+
+        //Retrofit Calls for the Most Anticipated Games
+        //TODO: ADD this call logic
+
+        //Retrofit Calls for the Top Rated Games
+        //TODO: ADD this call logic
 
     }
 
