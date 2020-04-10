@@ -8,18 +8,48 @@ import androidx.navigation.ui.NavigationUI;
 
 
 import android.os.Bundle;
+import android.os.Debug;
+import android.util.Log;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import integration.unity.akhil.gamedepot.R;
+import integration.unity.akhil.gamedepot.api.ApiInterface;
+import integration.unity.akhil.gamedepot.api.RetrofitApiClient;
+import integration.unity.akhil.gamedepot.models.Games;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
+
+    ApiInterface apiService =
+            RetrofitApiClient.getClient().create(ApiInterface.class);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupBottomNavigationBar();
+
+
+
+        Call<Games> call = apiService.getPopularGames("2019-01-01,2019-12-31","-added",1);
+        call.enqueue(new Callback<Games>() {
+            @Override
+            public void onResponse(Call<Games> call, Response<Games> response) {
+                int statusCode = response.code();
+                Log.d("API",statusCode + "");
+                Log.d("Data",response.body().getResults().get(0).getName());
+            }
+
+            @Override
+            public void onFailure(Call<Games> call, Throwable t) {
+                Log.e("API","Error" + t.getLocalizedMessage() + t.getMessage());
+            }
+        });
+
     }
 
     @Override
