@@ -8,11 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import integration.unity.akhil.gamedepot.R;
+import integration.unity.akhil.gamedepot.databinding.FragmentMainListBinding;
 
 
 public class MainListFragment extends Fragment {
 
     public static final String TAG = "ArticleListFragment";
+    private FragmentMainListBinding binding;
     //TODO: Data Binding with View and Adapter
 
     public MainListFragment() {
@@ -23,6 +25,7 @@ public class MainListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main_list, container, false);
+        binding = FragmentMainListBinding.inflate(inflater,container,false);
+        return binding.getRoot();
     }
 }
