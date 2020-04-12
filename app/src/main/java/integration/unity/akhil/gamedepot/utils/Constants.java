@@ -2,7 +2,7 @@ package integration.unity.akhil.gamedepot.utils;
 
 public class Constants {
     public static int PAGE_SIZE = 5;
-
+    public static String BASE_URL = "https://api.rawg.io/api/";
     public static class Popular{
         public static String DATE = "2019-01-01,2019-12-31";
         public static String ORDERING= "-added";
