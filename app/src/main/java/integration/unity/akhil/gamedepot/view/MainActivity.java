@@ -8,6 +8,7 @@ import androidx.navigation.ui.NavigationUI;
 import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import integration.unity.akhil.gamedepot.R;
+import integration.unity.akhil.gamedepot.lifecycle.GamesObserver;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -22,7 +23,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+
+        //Setup Bottom Navigation Bar
         setupBottomNavigationBar();
+
+        //Observe Lifecycle events
+        getLifecycle().addObserver(new GamesObserver());
     }
 
     protected  void setupBottomNavigationBar(){

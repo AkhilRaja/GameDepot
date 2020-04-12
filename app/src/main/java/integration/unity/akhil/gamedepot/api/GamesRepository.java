@@ -65,11 +65,11 @@ public class GamesRepository {
 
     //TODO: Add Live Data
 
-    public LiveData<Games> getPopularGames(String source) {
+    public LiveData<Games> getPopularGames(String date, String ordering, int page_size) {
 
         final MutableLiveData<Games> data = new MutableLiveData<>();
 
-        gamesService.getPopularGames(Constants.Popular.DATE,Constants.Popular.ORDERING,1)
+        gamesService.getPopularGames(date,ordering,page_size)
                 .enqueue(new Callback<Games>() {
             @Override
             public void onResponse(Call<Games> call, Response<Games> response) {
