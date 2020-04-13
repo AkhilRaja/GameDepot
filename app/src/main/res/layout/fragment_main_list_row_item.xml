@@ -4,7 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="result"
             type="integration.unity.akhil.gamedepot.models.Result" />
@@ -29,7 +28,7 @@
                 android:id="@+id/image_view_movie"
                 android:layout_width="130dp"
                 android:layout_height="170dp"
-                android:scaleType="fitXY" />
+                android:scaleType="fitXY"/>
             <LinearLayout
                 android:id="@+id/layout_mov"
                 android:layout_width="wrap_content"
@@ -42,9 +41,8 @@
                     android:id="@+id/tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:maxLines="1"
-                    android:text="@string/death_stranding"
+                    android:text="@{result.getName}"
                     android:textSize="12sp" />
 
                 <TextView
@@ -54,7 +52,7 @@
                     android:ellipsize="end"
                     android:fontFamily="sans-serif"
                     android:maxLines="1"
-                    android:text="@string/genre"
+                    android:text="@{result.getReleased}"
                     android:textSize="12sp" />
 
 

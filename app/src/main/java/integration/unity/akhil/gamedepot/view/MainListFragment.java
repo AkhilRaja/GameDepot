@@ -52,7 +52,6 @@ public class MainListFragment extends Fragment {
                 .get(GameViewModel.class);
 
         binding.setIsLoading(true);
-
         observeViewModel(viewModel);
     }
 
