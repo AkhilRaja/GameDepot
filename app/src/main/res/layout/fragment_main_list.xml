@@ -1,15 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.MainList">
 
-    <androidx.recyclerview.widget.RecyclerView
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="isLoading"
+            type="boolean" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/rv_main">
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/tvGameCategory1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/game_category"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/gameRV1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvGameCategory1"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal"
+            app:layoutManager="LinearLayoutManager"/>
+
+        <View
+            android:id="@+id/activityMainDivider1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/gameRV1"
+            android:layout_marginBottom="5dp"
+            android:background="#31C7C7CC" />
+
+
+        <TextView
+            android:id="@+id/tvGameCategory2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@id/activityMainDivider1"
+            android:text="@string/game_category"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/gameRV2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvGameCategory2"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal" />
+
+        <View
+            android:id="@+id/activityMainDivider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/gameRV2"
+            android:layout_marginBottom="5dp"
+            android:background="#31C7C7CC" />
+
+        <TextView
+            android:id="@+id/tvGameCategory3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@id/activityMainDivider2"
+            android:text="@string/game_category"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/gameRV3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvGameCategory3"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal" />
+
+        <View
+            android:id="@+id/activityMainDivider3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/gameRV3"
+            android:layout_marginBottom="5dp"
+            android:background="#31C7C7CC" />
+
+    </RelativeLayout>
+
+
+</layout>
+

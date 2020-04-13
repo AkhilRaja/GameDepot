@@ -6,12 +6,12 @@
     app:startDestination="@id/mainListFragment">
     <fragment
         android:id="@+id/mainListFragment"
-        android:name="integration.unity.akhil.gamedepot.view.MainList"
+        android:name="integration.unity.akhil.gamedepot.view.MainListFragment"
         android:label="fragment_main_list"
         tools:layout="@layout/fragment_main_list" />
     <fragment
         android:id="@+id/mainDetailFragment"
-        android:name="integration.unity.akhil.gamedepot.view.MainDetail"
+        android:name="integration.unity.akhil.gamedepot.view.MainDetailFragment"
         android:label="fragment_main_detail"
         tools:layout="@layout/fragment_main_detail" />
 </navigation>
