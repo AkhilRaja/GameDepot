@@ -3,7 +3,6 @@ package integration.unity.akhil.gamedepot.view;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -11,7 +10,7 @@ import androidx.lifecycle.ViewModelProviders;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import integration.unity.akhil.gamedepot.R;
+
 import integration.unity.akhil.gamedepot.adapter.GamesAdapter;
 import integration.unity.akhil.gamedepot.databinding.FragmentMainListBinding;
 import integration.unity.akhil.gamedepot.models.Games;
@@ -22,8 +21,15 @@ public class MainListFragment extends Fragment {
 
     public static final String TAG = "ArticleListFragment";
     private FragmentMainListBinding binding;
-    private GamesAdapter gamesAdapter;
+    private GamesAdapter popularGamesAdapter;
+    private GamesAdapter anticipatedGamesAdapter;
+    private GamesAdapter topratedGamesAdapter;
 
+    public static enum GameType {
+        Popular,
+        Anticipated,
+        TopRated
+    }
     public MainListFragment() {
         // Required empty public constructor
     }
@@ -33,10 +39,15 @@ public class MainListFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentMainListBinding.inflate(inflater,container,false);
-        gamesAdapter = new GamesAdapter();
-        binding.gameRV1.setAdapter(gamesAdapter);
-        binding.setIsLoading(true);
+        popularGamesAdapter = new GamesAdapter(GameType.Popular);
+        anticipatedGamesAdapter = new GamesAdapter(GameType.Anticipated);
+        topratedGamesAdapter = new GamesAdapter(GameType.TopRated);
 
+        binding.gameRV1.setAdapter(popularGamesAdapter);
+        binding.gameRV2.setAdapter(anticipatedGamesAdapter);
+        binding.gameRV3.setAdapter(topratedGamesAdapter);
+
+        binding.setIsLoading(true);
         return binding.getRoot();
     }
 
@@ -57,12 +68,32 @@ public class MainListFragment extends Fragment {
 
     private void observeViewModel(GameViewModel viewModel) {
         // Update the list when the data changes
-        viewModel.getObservableProject().observe(getViewLifecycleOwner(), new Observer<Games>() {
+        viewModel.getObservablePopularGames().observe(getViewLifecycleOwner(), new Observer<Games>() {
             @Override
             public void onChanged(@Nullable Games games) {
                 if (games!= null) {
                     binding.setIsLoading(false);
-                    gamesAdapter.setGameList(games.getResults());
+                    popularGamesAdapter.setGameList(games.getResults());
+                }
+            }
+        });
+
+        viewModel.getObservableAnticipatedGames().observe(getViewLifecycleOwner(),new Observer<Games>() {
+            @Override
+            public void onChanged(@Nullable Games games) {
+                if(games!= null) {
+                    binding.setIsLoading(false);
+                    anticipatedGamesAdapter.setGameList(games.getResults());
+                }
+            }
+        });
+
+        viewModel.getObservableTopRatedGames().observe(getViewLifecycleOwner(), new Observer<Games>() {
+            @Override
+            public void onChanged(Games games) {
+                if(games!= null) {
+                    binding.setIsLoading(false);
+                    topratedGamesAdapter.setGameList(games.getResults());
                 }
             }
         });

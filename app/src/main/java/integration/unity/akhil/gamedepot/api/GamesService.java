@@ -11,6 +11,5 @@ public interface GamesService {
 
     String URL = Constants.BASE_URL;
     @GET("games")
-    Call<Games> getPopularGames(@Query("dates") String date,@Query("ordering") String ordering,@Query("page_size") int pageSize);
-
+    Call<Games> getGames(@Query("dates") String date, @Query("ordering") String ordering, @Query("page_size") int pageSize);
 }
