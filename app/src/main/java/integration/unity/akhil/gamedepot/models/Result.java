@@ -1,9 +1,19 @@
 
 package integration.unity.akhil.gamedepot.models;
 
+import android.widget.ImageView;
+
+import androidx.databinding.BindingAdapter;
+
 import java.util.List;
+
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import integration.unity.akhil.gamedepot.R;
 
 public class Result {
 
@@ -148,6 +158,14 @@ public class Result {
         this.tba = tba;
     }
 
+    @BindingAdapter("profileImage")
+    public static void LoadImage(ImageView imageView, String imageUrl) {
+        Glide.with(imageView.getContext())
+                .load(imageUrl)
+                .apply(new RequestOptions().centerCrop()
+                .placeholder(R.drawable.ic_launcher_background))
+                .into(imageView);
+    }
     public String getBackgroundImage() {
         return backgroundImage;
     }
