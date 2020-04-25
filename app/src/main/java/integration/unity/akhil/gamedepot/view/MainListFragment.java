@@ -2,65 +2,69 @@ package integration.unity.akhil.gamedepot.view;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import integration.unity.akhil.gamedepot.R;
+import integration.unity.akhil.gamedepot.adapter.GamesAdapter;
+import integration.unity.akhil.gamedepot.databinding.FragmentMainListBinding;
+import integration.unity.akhil.gamedepot.models.Games;
+import integration.unity.akhil.gamedepot.viewmodel.GameViewModel;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MainListFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class MainListFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    public static final String TAG = "ArticleListFragment";
+    private FragmentMainListBinding binding;
+    private GamesAdapter gamesAdapter;
 
     public MainListFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MainList.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static MainListFragment newInstance(String param1, String param2) {
-        MainListFragment fragment = new MainListFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main_list, container, false);
+        binding = FragmentMainListBinding.inflate(inflater,container,false);
+        gamesAdapter = new GamesAdapter();
+        binding.gameRV1.setAdapter(gamesAdapter);
+        binding.setIsLoading(true);
+
+        return binding.getRoot();
+    }
+
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        GameViewModel.Factory factory = new GameViewModel.Factory(
+                getActivity().getApplication());
+
+        final GameViewModel viewModel = ViewModelProviders.of(this, factory)
+                .get(GameViewModel.class);
+
+        binding.setIsLoading(true);
+        observeViewModel(viewModel);
+    }
+
+    private void observeViewModel(GameViewModel viewModel) {
+        // Update the list when the data changes
+        viewModel.getObservableProject().observe(getViewLifecycleOwner(), new Observer<Games>() {
+            @Override
+            public void onChanged(@Nullable Games games) {
+                if (games!= null) {
+                    binding.setIsLoading(false);
+                    gamesAdapter.setGameList(games.getResults());
+                }
+            }
+        });
     }
 }
