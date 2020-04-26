@@ -1,8 +1,12 @@
 package integration.unity.akhil.gamedepot.api;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import java.io.IOException;
+
+import integration.unity.akhil.gamedepot.models.GameDetail;
 import integration.unity.akhil.gamedepot.models.Games;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
@@ -78,5 +82,28 @@ public class GamesRepository {
         });
         return data;
     }
+
+    public LiveData<GameDetail> getGameDetail(int id) {
+
+        final MutableLiveData<GameDetail> data = new MutableLiveData<>();
+
+        gamesService.getGameDetail(id)
+                .enqueue(new Callback<GameDetail>() {
+                    @Override
+                    public void onResponse(Call<GameDetail> call, Response<GameDetail> response) {
+                        data.setValue(response.body());
+
+                        Log.d("Game Depot :  ", "Response : " + response.body().getName());
+                    }
+
+                    @Override
+                    public void onFailure(Call<GameDetail> call, Throwable t) {
+                        data.setValue(null);
+                        Log.e("Game Depot :  ", "Response : " + t.getMessage());
+                    }
+                });
+        return data;
+    }
+
 
 }

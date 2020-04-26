@@ -30,7 +30,9 @@
                 android:id="@+id/image_view_game"
                 android:layout_width="match_parent"
                 android:layout_height="250sp"
-                app:profileImage = "@{result.backgroundImage}"/>
+                android:onClick="@{(v) -> callback.onGotoDetailView(v,result)}"
+                app:profileImage = "@{result.backgroundImage}"
+                />
             <LinearLayout
                 android:id="@+id/layout_mov"
                 android:layout_width="wrap_content"

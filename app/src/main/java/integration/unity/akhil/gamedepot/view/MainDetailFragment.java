@@ -2,13 +2,22 @@ package integration.unity.akhil.gamedepot.view;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import integration.unity.akhil.gamedepot.R;
+import integration.unity.akhil.gamedepot.databinding.FragmentMainDetailBinding;
+import integration.unity.akhil.gamedepot.models.GameDetail;
+import integration.unity.akhil.gamedepot.models.Games;
+import integration.unity.akhil.gamedepot.viewmodel.GameDetailViewModel;
+import integration.unity.akhil.gamedepot.viewmodel.GameViewModel;
 
 
 /**
@@ -20,43 +29,45 @@ public class MainDetailFragment extends Fragment {
 
 ///Havent touched this file yet..
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private int id;
+    FragmentMainDetailBinding binding;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    public void setID(int id){
+        this.id = id;
+    }
 
     public MainDetailFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MainDetail.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static MainDetailFragment newInstance(String param1, String param2) {
         MainDetailFragment fragment = new MainDetailFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
+//        Bundle args = new Bundle();
+//        args.putString(ARG_PARAM1, param1);
+//        args.putString(ARG_PARAM2, param2);
+//        fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        GameDetailViewModel.Factory factory = new GameDetailViewModel.Factory(
+                getActivity().getApplication(),id);
+
+        final GameDetailViewModel viewModel = ViewModelProviders.of(this, factory)
+                .get(GameDetailViewModel.class);
+
+        observeViewModel(viewModel);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+//            mParam1 = getArguments().getString(ARG_PARAM1);
+//            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -64,6 +75,22 @@ public class MainDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main_detail, container, false);
+        binding = FragmentMainDetailBinding.inflate(inflater, container, false);
+        id = MainDetailFragmentArgs.fromBundle(getArguments()).getGameid();
+        Log.d("Game Depot", "Id is  :" + id);
+        return binding.getRoot();
+    }
+
+    private void observeViewModel(GameDetailViewModel viewModel) {
+        // Update the list when the data changes
+        viewModel.getObservableGameDetail().observe(getViewLifecycleOwner(), new Observer<GameDetail>() {
+            @Override
+            public void onChanged(@Nullable GameDetail games) {
+                if (games!= null) {
+                    Log.d("Game Depot : " , "Loaded Values" + games.getName());
+                    binding.setGame(games);
+                }
+            }
+        });
     }
 }
