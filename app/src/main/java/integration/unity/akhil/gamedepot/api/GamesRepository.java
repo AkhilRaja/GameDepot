@@ -60,15 +60,11 @@ public class GamesRepository {
         return gamesRepository;
     }
 
-
-
-    //TODO: Add Live Data
-
-    public LiveData<Games> getPopularGames(String date, String ordering, int page_size) {
+    public LiveData<Games> getGames(String date, String ordering, int page_size) {
 
         final MutableLiveData<Games> data = new MutableLiveData<>();
 
-        gamesService.getPopularGames(date,ordering,page_size)
+        gamesService.getGames(date,ordering,page_size)
                 .enqueue(new Callback<Games>() {
             @Override
             public void onResponse(Call<Games> call, Response<Games> response) {
@@ -82,10 +78,5 @@ public class GamesRepository {
         });
         return data;
     }
-
-    //Retrofit call to get the Popular Games
-    //TODO: Add the call logic
-    //Retrofit call to get the Popular Games
-    //TODO: Add the call logic
 
 }

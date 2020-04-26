@@ -12,6 +12,8 @@
     <string name="cd_form">View your profile</string>
     <string name="list_fragment">List Fragment Text</string>
     <string name="game_category_popular">Most Popular</string>
+    <string name="game_category_anticipated">Most Anticipated</string>
+    <string name="game_category_topRated">Top Rated</string>
     <string name="game_category">Game Category</string>
     <string name="death_stranding">Death Stranding</string>
     <string name="genre">Genre</string>
