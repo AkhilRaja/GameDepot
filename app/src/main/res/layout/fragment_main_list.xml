@@ -8,7 +8,9 @@
             name="isLoading"
             type="boolean" />
     </data>
-
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -52,8 +54,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_below="@id/activityMainDivider1"
-            android:text="@string/game_category"
-            android:textSize="14sp"
+            android:text="@string/game_category_anticipated"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -63,7 +65,8 @@
             android:layout_below="@id/tvGameCategory2"
             android:layout_marginStart="10dp"
             android:layout_marginBottom="15dp"
-            android:orientation="horizontal" />
+            android:orientation="horizontal"
+            app:layoutManager="LinearLayoutManager" />
 
         <View
             android:id="@+id/activityMainDivider2"
@@ -81,8 +84,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_below="@id/activityMainDivider2"
-            android:text="@string/game_category"
-            android:textSize="14sp"
+            android:text="@string/game_category_topRated"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -92,7 +95,8 @@
             android:layout_below="@id/tvGameCategory3"
             android:layout_marginStart="10dp"
             android:layout_marginBottom="15dp"
-            android:orientation="horizontal" />
+            android:orientation="horizontal"
+            app:layoutManager="LinearLayoutManager" />
 
         <View
             android:id="@+id/activityMainDivider3"
@@ -103,7 +107,7 @@
             android:background="#31C7C7CC" />
 
     </RelativeLayout>
-
+</androidx.core.widget.NestedScrollView>
 
 </layout>
 

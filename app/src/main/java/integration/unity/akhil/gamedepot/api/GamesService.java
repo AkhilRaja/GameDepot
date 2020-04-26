@@ -1,5 +1,6 @@
 package integration.unity.akhil.gamedepot.api;
 
+import integration.unity.akhil.gamedepot.models.GameDetail;
 import integration.unity.akhil.gamedepot.models.Games;
 import integration.unity.akhil.gamedepot.utils.Constants;
 import retrofit2.Call;
@@ -11,6 +12,7 @@ public interface GamesService {
 
     String URL = Constants.BASE_URL;
     @GET("games")
-    Call<Games> getPopularGames(@Query("dates") String date,@Query("ordering") String ordering,@Query("page_size") int pageSize);
-
+    Call<Games> getGames(@Query("dates") String date, @Query("ordering") String ordering, @Query("page_size") int pageSize);
+    @GET("games/{id}")
+    Call<GameDetail> getGameDetail(@Path("id") int id);
 }
