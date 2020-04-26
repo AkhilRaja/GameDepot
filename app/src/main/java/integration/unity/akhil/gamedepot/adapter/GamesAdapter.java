@@ -23,6 +23,7 @@ public class GamesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     private List<? extends  Result> gameList;
     private MainListFragment.GameType gameType;
+    public OnClickCallBack detailCallbackListener;
 
     public GamesAdapter(MainListFragment.GameType gameType) {
         this.gameType = gameType;
@@ -73,8 +74,8 @@ public class GamesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     LayoutInflater.from(parent.getContext()),
                     R.layout.fragment_popular_list_row_item,
                     parent, false);
-                    bindingPopular.setCallback(new OnClickCallBack());
-                    viewHolder =  new PopularGameViewHolder(bindingPopular);
+                    bindingPopular.setCallback(detailCallbackListener);
+                    viewHolder = new PopularGameViewHolder(bindingPopular);
                     break;
             case TopRated:
             case Anticipated:
@@ -82,7 +83,7 @@ public class GamesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         LayoutInflater.from(parent.getContext()),
                         R.layout.fragment_anticipated_list_row_item,
                         parent, false);
-                bindingAnticipated.setCallback(new OnClickCallBack());
+                bindingAnticipated.setCallback(detailCallbackListener);
                 viewHolder =  new AnticipatedGameViewHolder(bindingAnticipated);
             break;
         }

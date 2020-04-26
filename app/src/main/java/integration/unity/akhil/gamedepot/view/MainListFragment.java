@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import integration.unity.akhil.gamedepot.adapter.GamesAdapter;
 import integration.unity.akhil.gamedepot.databinding.FragmentMainListBinding;
 import integration.unity.akhil.gamedepot.models.Games;
+import integration.unity.akhil.gamedepot.view.callback.OnClickCallBack;
 import integration.unity.akhil.gamedepot.viewmodel.GameViewModel;
 
 
@@ -39,13 +40,21 @@ public class MainListFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentMainListBinding.inflate(inflater,container,false);
+
+        //region Setting up the Adapter
         popularGamesAdapter = new GamesAdapter(GameType.Popular);
+        popularGamesAdapter.detailCallbackListener = (OnClickCallBack) this.getActivity();
+
         anticipatedGamesAdapter = new GamesAdapter(GameType.Anticipated);
+        anticipatedGamesAdapter.detailCallbackListener = (OnClickCallBack) this.getActivity();
+
         topratedGamesAdapter = new GamesAdapter(GameType.TopRated);
+        topratedGamesAdapter.detailCallbackListener = (OnClickCallBack) this.getActivity();
 
         binding.gameRV1.setAdapter(popularGamesAdapter);
         binding.gameRV2.setAdapter(anticipatedGamesAdapter);
         binding.gameRV3.setAdapter(topratedGamesAdapter);
+        //endregion
 
         binding.setIsLoading(true);
         return binding.getRoot();

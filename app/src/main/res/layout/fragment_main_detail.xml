@@ -1,14 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.MainDetailFragment">
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+        <variable
+            name="game"
+            type="integration.unity.akhil.gamedepot.models.GameDetail" />
+        <variable
+            name="isLoading"
+            type="boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/relativeLayout2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="251dp"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:bg = "@{game.backgroundImage}"
+            />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="250sp"
+            android:layout_height="40sp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="16dp"
+            android:text="@{game.name}"
+            android:textColor="#000000"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <TextView
+            android:id="@+id/release_date"
+            android:layout_width="150sp"
+            android:layout_height="0dp"
+            android:layout_marginStart="22dp"
+            android:text="@{game.released}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="170sp"
+            android:layout_height="50sp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="27dp"
+            android:text="Want"
+            app:layout_constraintEnd_toStartOf="@+id/button2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/release_date" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="170sp"
+            android:layout_height="50sp"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="39dp"
+            android:layout_marginEnd="22dp"
+            android:text="Played"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button"
+            app:layout_constraintTop_toBottomOf="@+id/title" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>
