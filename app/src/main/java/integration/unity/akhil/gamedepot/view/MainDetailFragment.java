@@ -12,10 +12,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import integration.unity.akhil.gamedepot.R;
+import integration.unity.akhil.gamedepot.adapter.GameScreenshotAdapter;
 import integration.unity.akhil.gamedepot.databinding.FragmentMainDetailBinding;
 import integration.unity.akhil.gamedepot.models.GameDetail;
 import integration.unity.akhil.gamedepot.models.Games;
+import integration.unity.akhil.gamedepot.models.ShortScreenshot;
 import integration.unity.akhil.gamedepot.viewmodel.GameDetailViewModel;
 import integration.unity.akhil.gamedepot.viewmodel.GameViewModel;
 
@@ -31,15 +37,13 @@ public class MainDetailFragment extends Fragment {
 
     private int id;
     FragmentMainDetailBinding binding;
+    private List<ShortScreenshot> screenshots = new ArrayList<>();
+    GameScreenshotAdapter gameScreenshotAdapter;
 
-    public void setID(int id){
-        this.id = id;
-    }
 
     public MainDetailFragment() {
         // Required empty public constructor
     }
-
 
     public static MainDetailFragment newInstance(String param1, String param2) {
         MainDetailFragment fragment = new MainDetailFragment();
@@ -77,6 +81,12 @@ public class MainDetailFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentMainDetailBinding.inflate(inflater, container, false);
         id = MainDetailFragmentArgs.fromBundle(getArguments()).getGameid();
+        screenshots = Arrays.asList(MainDetailFragmentArgs.fromBundle(getArguments()).getScreenshots());
+
+        gameScreenshotAdapter = new GameScreenshotAdapter();
+        binding.rvScreenshot.setAdapter(gameScreenshotAdapter);
+        gameScreenshotAdapter.setGameList(screenshots);
+
         Log.d("Game Depot", "Id is  :" + id);
         return binding.getRoot();
     }
