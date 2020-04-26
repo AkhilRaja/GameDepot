@@ -12,10 +12,15 @@ import android.util.Log;
 import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import integration.unity.akhil.gamedepot.R;
 import integration.unity.akhil.gamedepot.databinding.FragmentMainDetailBindingImpl;
 import integration.unity.akhil.gamedepot.lifecycle.GamesObserver;
 import integration.unity.akhil.gamedepot.models.Result;
+import integration.unity.akhil.gamedepot.models.ShortScreenshot;
 import integration.unity.akhil.gamedepot.view.callback.OnClickCallBack;
 
 
@@ -57,11 +62,13 @@ public class MainActivity extends AppCompatActivity implements OnClickCallBack {
     @Override
     public void onGotoDetailView(View view, Result game) {
         Log.d("Game Depot", "Game : " + game.getId());
+        ShortScreenshot[] screenShotUrl = game.getShortScreenshots().toArray(new ShortScreenshot[0]);
         MainListFragmentDirections.
                 ActionMainListFragmentToMainDetailFragment action =
-                MainListFragmentDirections.actionMainListFragmentToMainDetailFragment();
+                MainListFragmentDirections.actionMainListFragmentToMainDetailFragment(screenShotUrl);
 
         action.setGameid(game.getId());
+
         navController.navigate(action);
 
     }

@@ -1,8 +1,12 @@
 
 package integration.unity.akhil.gamedepot.models;
 
+import android.text.Html;
+import android.util.Log;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import androidx.core.text.HtmlCompat;
 import androidx.databinding.BindingAdapter;
 
 import java.util.List;
@@ -521,6 +525,32 @@ public class GameDetail {
                 .apply(new RequestOptions().centerCrop()
                         .placeholder(R.drawable.ic_launcher_background))
                 .into(imageView);
+    }
+    @BindingAdapter("desc")
+    public static void LoadText(TextView textView, String text) {
+        if(text!=null) {
+            textView.setText(HtmlCompat.fromHtml(text,HtmlCompat.FROM_HTML_MODE_LEGACY));
+        }
+    }
+    @BindingAdapter("pub")
+    public static void LoadPub(TextView textView, List<Publisher> publishers) {
+        String text = "Publishers : ";
+        if(publishers!=null) {
+            for(Publisher publisher : publishers) {
+                text = text + " " + publisher.getName();
+            }
+            textView.setText(text);
+        }
+    }
+    @BindingAdapter("dev")
+    public static void LoadDev(TextView textView, List<Developer> developers) {
+        String text = "Developers : ";
+        if(developers!=null) {
+            for(Developer developer : developers) {
+                text = text + " " + developer.getName();
+            }
+            textView.setText(text);
+        }
     }
     public String getSaturatedColor() {
         return saturatedColor;

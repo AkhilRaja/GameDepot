@@ -24,6 +24,9 @@
             android:name="gameid"
             app:argType="integer"
             android:defaultValue="1" />
+        <argument
+            android:name="screenshots"
+            app:argType="integration.unity.akhil.gamedepot.models.ShortScreenshot[]" />
     </fragment>
 
     <fragment
