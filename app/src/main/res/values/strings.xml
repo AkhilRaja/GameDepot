@@ -31,6 +31,9 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="want">Want</string>
+    <string name="screenshots">Screenshots</string>
+    <string name="summary">Summary</string>
 
 
 </resources>
