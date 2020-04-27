@@ -4,11 +4,13 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import integration.unity.akhil.gamedepot.api.GamesRepository;
 import integration.unity.akhil.gamedepot.models.Games;
+import integration.unity.akhil.gamedepot.models.User;
 import integration.unity.akhil.gamedepot.utils.Constants;
 
 public class GameViewModel extends ViewModel {
@@ -16,6 +18,8 @@ public class GameViewModel extends ViewModel {
     private final LiveData<Games> popularGamesLiveData;
     private final LiveData<Games> anticipatedGamesLiveData;
     private final LiveData<Games> topRatedGamesLiveData;
+
+
 
     public GameViewModel(@NonNull Application application) {
         this.popularGamesLiveData = GamesRepository.getInstance()
@@ -35,6 +39,9 @@ public class GameViewModel extends ViewModel {
     public LiveData<Games> getObservableTopRatedGames() {
         return topRatedGamesLiveData;
     }
+
+
+
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
         @NonNull
         private final Application application;

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1091188215727",
+    "firebase_url": "https://gamedepot-bd5ca.firebaseio.com",
+    "project_id": "gamedepot-bd5ca",
+    "storage_bucket": "gamedepot-bd5ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1091188215727:android:90f0cea05799ca616e695a",
+        "android_client_info": {
+          "package_name": "integration.unity.akhil.gamedepot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1091188215727-h3mp717bd3rth9tr0h2up82cq6arf8u3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "integration.unity.akhil.gamedepot",
+            "certificate_hash": "95c56298c9f44272076b815cf303e0fa4821deb3"
+          }
+        },
+        {
+          "client_id": "1091188215727-7t90nosnnt5nh5er4aavu22bbhuikd4c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpN_p4E5fMDE_j9_tZLwdmqVmpqNlfHUs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1091188215727-7t90nosnnt5nh5er4aavu22bbhuikd4c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
