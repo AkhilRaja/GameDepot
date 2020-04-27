@@ -32,6 +32,7 @@
                 android:layout_height="250sp"
                 android:onClick="@{(v) -> callback.onGotoDetailView(v,result)}"
                 app:profileImage = "@{result.backgroundImage}"
+                android:contentDescription="@string/game_background"
                 />
             <LinearLayout
                 android:id="@+id/layout_mov"

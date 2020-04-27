@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "1091188215727-h3mp717bd3rth9tr0h2up82cq6arf8u3.apps.googleusercontent.com",
+          "client_id": "1091188215727-m3rtrvgonmpv63ofgrlpct4fq7usup9j.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "integration.unity.akhil.gamedepot",
-            "certificate_hash": "95c56298c9f44272076b815cf303e0fa4821deb3"
+            "certificate_hash": "38a053c43900b9d5e0842dde3bf1cf0266c71a15"
           }
         },
         {

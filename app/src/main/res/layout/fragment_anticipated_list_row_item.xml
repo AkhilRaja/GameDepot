@@ -31,7 +31,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="180sp"
                 app:profileImage = "@{result.backgroundImage}"
-                android:onClick="@{(v) -> callback.onGotoDetailView(v,result)}" />
+                android:onClick="@{(v) -> callback.onGotoDetailView(v,result)}"
+                android:contentDescription="@string/game_background" />
             <LinearLayout
                 android:id="@+id/layout_mov"
                 android:layout_width="wrap_content"
@@ -47,7 +48,8 @@
                     android:maxLines="1"
                     android:text="@{result.getName}"
                     android:textSize="15sp"
-                    android:paddingStart="5sp"/>
+                    android:paddingStart="5sp"
+                    android:paddingEnd="5sp"/>
             </LinearLayout>
 
         </RelativeLayout>

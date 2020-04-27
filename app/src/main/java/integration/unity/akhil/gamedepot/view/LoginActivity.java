@@ -24,25 +24,27 @@ import java.util.Objects;
 import integration.unity.akhil.gamedepot.R;
 
 public class LoginActivity extends AppCompatActivity {
-    private static final int MY_REQUEST_CODE = 123;
+    private static final int MY_REQUEST_CODE = 1234;
     List<AuthUI.IdpConfig> providers;
-
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         providers = Arrays.asList(
-//                new AuthUI.IdpConfig.FacebookBuilder().build(),
-                new AuthUI.IdpConfig.GoogleBuilder().build()
+                new AuthUI.IdpConfig.FacebookBuilder().build(),
+                new AuthUI.IdpConfig.GoogleBuilder().build(),
+                new AuthUI.IdpConfig.EmailBuilder().build()
         );
-        showSignInOptions();
+        if(user==null)
+            showSignInOptions();
     }
     private void showSignInOptions() {
         startActivityForResult(
                 AuthUI.getInstance().createSignInIntentBuilder()
                         .setAvailableProviders(providers)
+                        .setIsSmartLockEnabled(true)
                         .setTheme(R.style.MyTheme)
                         .build(), MY_REQUEST_CODE
         );
@@ -50,11 +52,13 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.d("Game Depot" , "Activity Result");
         if (requestCode == MY_REQUEST_CODE) {
             IdpResponse response = IdpResponse.fromResultIntent(data);
+            Log.d("Game Depot" , "Activity Result + Request Code");
             if (resultCode == RESULT_OK) {
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                Log.d("Firebase ","" + user.getPhotoUrl());
+                user = FirebaseAuth.getInstance().getCurrentUser();
+                Log.d("Game Depot" , "Activity Result + Result OK");
                 Intent i = new Intent(this, MainActivity.class);
                 assert user != null;
                 i.putExtra("name",user.getDisplayName());
@@ -62,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                 i.putExtra("phone",user.getPhoneNumber());
                 i.putExtra("photo", Objects.requireNonNull(user.getPhotoUrl()).toString());
                 startActivity(i);
-                finish();
+//                finish();
                 Toast.makeText(this, "Welcome! " + user.getDisplayName(), Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(this, "" + response.getError().getMessage(), Toast.LENGTH_LONG).show();

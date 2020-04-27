@@ -74,10 +74,20 @@ public class MainListFragment extends Fragment {
         return binding.getRoot();
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
 
         GameViewModel.Factory factory = new GameViewModel.Factory(
                 getActivity().getApplication());

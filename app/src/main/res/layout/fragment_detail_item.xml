@@ -23,7 +23,9 @@
             android:id="@+id/image_view_game"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:image="@{result.image}"/>
+            app:image="@{result.image}"
+            android:contentDescription="@string/game_background"
+            />
 
     </RelativeLayout>
 

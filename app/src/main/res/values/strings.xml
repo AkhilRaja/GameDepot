@@ -34,6 +34,8 @@
     <string name="want">Want</string>
     <string name="screenshots">Screenshots</string>
     <string name="summary">Summary</string>
+    <string name="game_background">Game Background</string>
+    <string name="login">Login</string>
 
 
 </resources>
