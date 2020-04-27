@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
@@ -18,6 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import integration.unity.akhil.gamedepot.R;
 
@@ -52,7 +54,14 @@ public class LoginActivity extends AppCompatActivity {
             IdpResponse response = IdpResponse.fromResultIntent(data);
             if (resultCode == RESULT_OK) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                startActivity(new Intent(this, MainActivity.class));
+                Log.d("Firebase ","" + user.getPhotoUrl());
+                Intent i = new Intent(this, MainActivity.class);
+                assert user != null;
+                i.putExtra("name",user.getDisplayName());
+                i.putExtra("email",user.getEmail());
+                i.putExtra("phone",user.getPhoneNumber());
+                i.putExtra("photo", Objects.requireNonNull(user.getPhotoUrl()).toString());
+                startActivity(i);
                 finish();
                 Toast.makeText(this, "Welcome! " + user.getDisplayName(), Toast.LENGTH_LONG).show();
             } else {

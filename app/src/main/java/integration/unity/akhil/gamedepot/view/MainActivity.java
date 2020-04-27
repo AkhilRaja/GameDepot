@@ -1,14 +1,19 @@
 package integration.unity.akhil.gamedepot.view;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.Toolbar;
+import androidx.navigation.NavArgument;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.facebook.FacebookSdk;
@@ -23,6 +28,7 @@ import integration.unity.akhil.gamedepot.databinding.FragmentMainDetailBindingIm
 import integration.unity.akhil.gamedepot.lifecycle.GamesObserver;
 import integration.unity.akhil.gamedepot.models.Result;
 import integration.unity.akhil.gamedepot.models.ShortScreenshot;
+import integration.unity.akhil.gamedepot.models.User;
 import integration.unity.akhil.gamedepot.view.callback.OnClickCallBack;
 
 
@@ -41,18 +47,28 @@ public class MainActivity extends AppCompatActivity implements OnClickCallBack {
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-
         //Setup Bottom Navigation Bar
         setupBottomNavigationBar();
-
         //Observe Lifecycle events
         getLifecycle().addObserver(new GamesObserver());
     }
 
     protected  void setupBottomNavigationBar(){
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);
+        final BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
+
+
+        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
+            @Override
+            public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
+                if(destination.getId() == R.id.mainDetailFragment) {
+                    bottomNavigationView.setVisibility(View.GONE);
+                } else {
+                    bottomNavigationView.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 //        NavigationUI.setupActionBarWithNavController(this, navController);
     }
 
@@ -71,8 +87,9 @@ public class MainActivity extends AppCompatActivity implements OnClickCallBack {
                 MainListFragmentDirections.actionMainListFragmentToMainDetailFragment(screenShotUrl);
 
         action.setGameid(game.getId());
-
         navController.navigate(action);
-
     }
+
+
+
 }

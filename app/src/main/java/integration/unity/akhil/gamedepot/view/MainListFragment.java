@@ -5,8 +5,10 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +16,10 @@ import android.view.ViewGroup;
 import integration.unity.akhil.gamedepot.adapter.GamesAdapter;
 import integration.unity.akhil.gamedepot.databinding.FragmentMainListBinding;
 import integration.unity.akhil.gamedepot.models.Games;
+import integration.unity.akhil.gamedepot.models.User;
 import integration.unity.akhil.gamedepot.view.callback.OnClickCallBack;
 import integration.unity.akhil.gamedepot.viewmodel.GameViewModel;
+import integration.unity.akhil.gamedepot.viewmodel.UserViewModel;
 
 
 public class MainListFragment extends Fragment {
@@ -25,6 +29,8 @@ public class MainListFragment extends Fragment {
     private GamesAdapter popularGamesAdapter;
     private GamesAdapter anticipatedGamesAdapter;
     private GamesAdapter topratedGamesAdapter;
+    private User user;
+
 
     public static enum GameType {
         Popular,
@@ -57,6 +63,14 @@ public class MainListFragment extends Fragment {
         //endregion
 
         binding.setIsLoading(true);
+
+
+        user = new User(getActivity().getIntent().getStringExtra("name"),
+                getActivity().getIntent().getStringExtra("email"),
+                getActivity().getIntent().getStringExtra("phone"),
+                getActivity().getIntent().getStringExtra("photo"));
+
+        Log.d("Game Depot: ", "User : " + user.getPhoto());
         return binding.getRoot();
     }
 
@@ -70,6 +84,8 @@ public class MainListFragment extends Fragment {
 
         final GameViewModel viewModel = ViewModelProviders.of(this, factory)
                 .get(GameViewModel.class);
+        final UserViewModel userViewModel = new ViewModelProvider(requireActivity()).get(UserViewModel.class);
+        userViewModel.select(user);
 
         binding.setIsLoading(true);
         observeViewModel(viewModel);
