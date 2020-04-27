@@ -33,8 +33,6 @@ import integration.unity.akhil.gamedepot.viewmodel.GameViewModel;
  */
 public class MainDetailFragment extends Fragment {
 
-///Havent touched this file yet..
-
     private int id;
     FragmentMainDetailBinding binding;
     private List<ShortScreenshot> screenshots = new ArrayList<>();
@@ -69,10 +67,6 @@ public class MainDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override

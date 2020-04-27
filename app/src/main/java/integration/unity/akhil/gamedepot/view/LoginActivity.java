@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         providers = Arrays.asList(
-                new AuthUI.IdpConfig.FacebookBuilder().build(),
+//                new AuthUI.IdpConfig.FacebookBuilder().build(),
                 new AuthUI.IdpConfig.GoogleBuilder().build()
         );
         showSignInOptions();
