@@ -49,10 +49,15 @@ public class MainActivity extends AppCompatActivity implements OnClickCallBack {
         super.onRestoreInstanceState(savedInstanceState);
         //Setup Bottom Navigation Bar
         setupBottomNavigationBar();
+
         //Observe Lifecycle events
         getLifecycle().addObserver(new GamesObserver());
     }
-
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
     protected  void setupBottomNavigationBar(){
         final BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -70,12 +75,6 @@ public class MainActivity extends AppCompatActivity implements OnClickCallBack {
             }
         });
 //        NavigationUI.setupActionBarWithNavController(this, navController);
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return super.onSupportNavigateUp();
     }
 
     @Override

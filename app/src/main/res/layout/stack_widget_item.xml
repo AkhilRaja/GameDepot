@@ -1,0 +1,21 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+     android:layout_width="match_parent">
+    <ImageView
+        android:id="@+id/widgetimage"
+        android:layout_height="300sp"
+        android:layout_width="400sp"
+        android:contentDescription="@string/widget"/>
+
+    <TextView
+        android:id="@+id/widgetitemtext"
+        android:layout_width="400sp"
+        android:layout_height="300sp"
+        android:gravity="bottom"
+        android:text="@string/game_category_popular"
+        android:textSize="15sp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"/>
+
+</FrameLayout>

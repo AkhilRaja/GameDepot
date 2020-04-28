@@ -1,8 +1,11 @@
 package integration.unity.akhil.gamedepot.view;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.view.ContextThemeWrapper;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -64,7 +67,7 @@ public class MainDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentMainDetailBinding.inflate(inflater, container, false);
+
         id = MainDetailFragmentArgs.fromBundle(getArguments()).getGameid();
         screenshots = Arrays.asList(MainDetailFragmentArgs.fromBundle(getArguments()).getScreenshots());
 
@@ -73,6 +76,11 @@ public class MainDetailFragment extends Fragment {
         gameScreenshotAdapter.setGameList(screenshots);
 
         Log.d("Game Depot", "Id is  :" + id);
+
+        if(getActivity().getActionBar() != null) {
+            getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
+            getActivity().getActionBar().setDisplayShowHomeEnabled(true);
+        }
         return binding.getRoot();
     }
 

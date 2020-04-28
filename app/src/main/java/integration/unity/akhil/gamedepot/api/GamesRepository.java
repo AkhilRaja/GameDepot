@@ -5,9 +5,13 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import integration.unity.akhil.gamedepot.models.GameDetail;
 import integration.unity.akhil.gamedepot.models.Games;
+import integration.unity.akhil.gamedepot.models.Result;
+import integration.unity.akhil.gamedepot.utils.Constants;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -18,15 +22,16 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static integration.unity.akhil.gamedepot.utils.Constants.BASE_URL;
 
 
 public class GamesRepository {
     private GamesService gamesService;
-    //TODO: Singleton pattern
+    //Singleton pattern
     private static GamesRepository gamesRepository;
 
     private GamesRepository() {
-        //TODO: Okhttp intercept for logging
+        //OKHTTP intercept for logging
 
         OkHttpClient.Builder httpClient =
                 new OkHttpClient.Builder();
@@ -53,7 +58,13 @@ public class GamesRepository {
 
         gamesService = retrofit.create(GamesService.class);
     }
-
+    public static Retrofit getClient() {
+        Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        return retrofit;
+    }
 
     public synchronized static GamesRepository getInstance() {
         if (gamesRepository == null) {
@@ -105,5 +116,21 @@ public class GamesRepository {
         return data;
     }
 
+    public List<Result> getGamesForWidget() {
+        List<Result> results = new ArrayList<>();
+        gamesService.getGames(Constants.Popular.DATE, Constants.Popular.ORDERING,Constants.PAGE_SIZE)
+                .enqueue(new Callback<Games>() {
+                    @Override
+                    public void onResponse(Call<Games> call, Response<Games> response) {
+                        results.addAll(response.body().getResults());
+                        Log.d("Game Depot : ", "Response: " + response.body().getResults().size());
+                    }
 
+                    @Override
+                    public void onFailure(Call<Games> call, Throwable t) {
+                        Log.e("Game Depot :  ", "Response : " + t.getMessage());
+                    }
+                });
+        return results;
+    }
 }
