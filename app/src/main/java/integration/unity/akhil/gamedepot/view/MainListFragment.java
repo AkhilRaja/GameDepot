@@ -94,6 +94,7 @@ public class MainListFragment extends Fragment {
 
         final GameViewModel viewModel = ViewModelProviders.of(this, factory)
                 .get(GameViewModel.class);
+        viewModel.syncGameData();
         final UserViewModel userViewModel = new ViewModelProvider(requireActivity()).get(UserViewModel.class);
         userViewModel.select(user);
 

@@ -36,6 +36,11 @@
     <string name="summary">Summary</string>
     <string name="game_background">Game Background</string>
     <string name="login">Login</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="add_widgets" />
+    <string name="configure">Configure</string>
+    <string name="widget">WidgetImage</string>
 
 
 </resources>
