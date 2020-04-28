@@ -29,6 +29,11 @@ public class GamesRepository {
     private GamesService gamesService;
     //Singleton pattern
     private static GamesRepository gamesRepository;
+    final MutableLiveData<Games> data = new MutableLiveData<>();
+
+    public void workerUpdateGames(){
+
+    }
 
     private GamesRepository() {
         //OKHTTP intercept for logging
@@ -75,17 +80,15 @@ public class GamesRepository {
         return gamesRepository;
     }
 
+
     public LiveData<Games> getGames(String date, String ordering, int page_size) {
-
-        final MutableLiveData<Games> data = new MutableLiveData<>();
-
+        Log.d("Worker Called","Check for updates");
         gamesService.getGames(date,ordering,page_size)
                 .enqueue(new Callback<Games>() {
             @Override
             public void onResponse(Call<Games> call, Response<Games> response) {
                 data.setValue(response.body());
             }
-
             @Override
             public void onFailure(Call<Games> call, Throwable t) {
                 data.setValue(null);
@@ -95,9 +98,7 @@ public class GamesRepository {
     }
 
     public LiveData<GameDetail> getGameDetail(int id) {
-
         final MutableLiveData<GameDetail> data = new MutableLiveData<>();
-
         gamesService.getGameDetail(id)
                 .enqueue(new Callback<GameDetail>() {
                     @Override

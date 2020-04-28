@@ -68,6 +68,7 @@ public class MainDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+        binding = FragmentMainDetailBinding.inflate(inflater, container, false);
         id = MainDetailFragmentArgs.fromBundle(getArguments()).getGameid();
         screenshots = Arrays.asList(MainDetailFragmentArgs.fromBundle(getArguments()).getScreenshots());
 
@@ -76,11 +77,6 @@ public class MainDetailFragment extends Fragment {
         gameScreenshotAdapter.setGameList(screenshots);
 
         Log.d("Game Depot", "Id is  :" + id);
-
-        if(getActivity().getActionBar() != null) {
-            getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
-            getActivity().getActionBar().setDisplayShowHomeEnabled(true);
-        }
         return binding.getRoot();
     }
 

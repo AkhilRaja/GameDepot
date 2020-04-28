@@ -7,21 +7,33 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
+
+import java.util.concurrent.TimeUnit;
 
 import integration.unity.akhil.gamedepot.api.GamesRepository;
 import integration.unity.akhil.gamedepot.models.Games;
 import integration.unity.akhil.gamedepot.models.User;
 import integration.unity.akhil.gamedepot.utils.Constants;
+import integration.unity.akhil.gamedepot.workers.GameSyncWorker;
 
 public class GameViewModel extends ViewModel {
 
     private final LiveData<Games> popularGamesLiveData;
     private final LiveData<Games> anticipatedGamesLiveData;
     private final LiveData<Games> topRatedGamesLiveData;
+    private final Application application;
 
-
+    public void syncGameData() {
+        PeriodicWorkRequest workRequest = new PeriodicWorkRequest
+                .Builder(GameSyncWorker.class,1, TimeUnit.HOURS).build();
+        WorkManager.getInstance(application.getApplicationContext())
+                .enqueue(workRequest);
+    }
 
     public GameViewModel(@NonNull Application application) {
+        this.application = application;
         this.popularGamesLiveData = GamesRepository.getInstance()
                 .getGames(Constants.Popular.DATE,Constants.Popular.ORDERING,Constants.PAGE_SIZE);
         this.anticipatedGamesLiveData = GamesRepository.getInstance()
