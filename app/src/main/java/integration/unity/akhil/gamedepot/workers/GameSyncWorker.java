@@ -20,13 +20,12 @@ public class GameSyncWorker extends Worker {
     @NonNull
     @Override
     public Result doWork() {
-        Log.d("Worker","Say Hi each time ");
         GamesRepository.getInstance().
-                getGames(Constants.Popular.DATE, Constants.Popular.ORDERING,Constants.PAGE_SIZE);
+                getPopularGames(Constants.Popular.DATE, Constants.Popular.ORDERING,Constants.PAGE_SIZE);
         GamesRepository.getInstance().
-                getGames(Constants.Anticipated.DATE, Constants.Anticipated.ORDERING,Constants.PAGE_SIZE);
+                getAnticipatedGames(Constants.Anticipated.DATE, Constants.Anticipated.ORDERING,Constants.PAGE_SIZE);
         GamesRepository.getInstance().
-                getGames(Constants.Anticipated.DATE, Constants.Anticipated.ORDERING,Constants.PAGE_SIZE);
+                getTopGames(Constants.TopRated.DATE, Constants.TopRated.ORDERING,Constants.PAGE_SIZE);
 
         return Result.success();
     }

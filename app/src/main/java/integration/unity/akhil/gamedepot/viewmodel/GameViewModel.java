@@ -35,11 +35,11 @@ public class GameViewModel extends ViewModel {
     public GameViewModel(@NonNull Application application) {
         this.application = application;
         this.popularGamesLiveData = GamesRepository.getInstance()
-                .getGames(Constants.Popular.DATE,Constants.Popular.ORDERING,Constants.PAGE_SIZE);
+                .getPopularGames(Constants.Popular.DATE,Constants.Popular.ORDERING,Constants.PAGE_SIZE);
         this.anticipatedGamesLiveData = GamesRepository.getInstance()
-                .getGames(Constants.Anticipated.DATE,Constants.Anticipated.ORDERING,Constants.PAGE_SIZE);
+                .getAnticipatedGames(Constants.Anticipated.DATE,Constants.Anticipated.ORDERING,Constants.PAGE_SIZE);
         this.topRatedGamesLiveData = GamesRepository.getInstance()
-                .getGames(Constants.TopRated.DATE,Constants.TopRated.ORDERING,Constants.PAGE_SIZE);
+                .getTopGames(Constants.TopRated.DATE,Constants.TopRated.ORDERING,Constants.PAGE_SIZE);
     }
 
     public LiveData<Games> getObservablePopularGames() {

@@ -29,7 +29,9 @@ public class GamesRepository {
     private GamesService gamesService;
     //Singleton pattern
     private static GamesRepository gamesRepository;
-    final MutableLiveData<Games> data = new MutableLiveData<>();
+    final MutableLiveData<Games> popularGames = new MutableLiveData<>();
+    final MutableLiveData<Games> anticipatedGames = new MutableLiveData<>();
+    final MutableLiveData<Games> topGames = new MutableLiveData<>();
 
     public void workerUpdateGames(){
 
@@ -81,20 +83,47 @@ public class GamesRepository {
     }
 
 
-    public LiveData<Games> getGames(String date, String ordering, int page_size) {
-        Log.d("Worker Called","Check for updates");
+    public LiveData<Games> getPopularGames(String date, String ordering, int page_size) {
         gamesService.getGames(date,ordering,page_size)
                 .enqueue(new Callback<Games>() {
             @Override
             public void onResponse(Call<Games> call, Response<Games> response) {
-                data.setValue(response.body());
+                popularGames.setValue(response.body());
             }
             @Override
             public void onFailure(Call<Games> call, Throwable t) {
-                data.setValue(null);
+                popularGames.setValue(null);
             }
         });
-        return data;
+        return popularGames;
+    }
+    public LiveData<Games> getAnticipatedGames(String date, String ordering, int page_size) {
+        gamesService.getGames(date,ordering,page_size)
+                .enqueue(new Callback<Games>() {
+                    @Override
+                    public void onResponse(Call<Games> call, Response<Games> response) {
+                        anticipatedGames.setValue(response.body());
+                    }
+                    @Override
+                    public void onFailure(Call<Games> call, Throwable t) {
+                        anticipatedGames.setValue(null);
+                    }
+                });
+        return anticipatedGames;
+    }
+    public LiveData<Games> getTopGames(String date, String ordering, int page_size) {
+        gamesService.getGames(date,ordering,page_size)
+                .enqueue(new Callback<Games>() {
+                    @Override
+                    public void onResponse(Call<Games> call, Response<Games> response) {
+                        topGames.setValue(response.body());
+                    }
+                    @Override
+                    public void onFailure(Call<Games> call, Throwable t) {
+                        topGames.setValue(null);
+                    }
+                });
+        return topGames;
     }
 
     public LiveData<GameDetail> getGameDetail(int id) {
