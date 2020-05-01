@@ -1,6 +1,13 @@
 # GameDepot--Udacity-Part-5
-The Udacity Capstone project which provides users information on the latest and greatest upcoming games.
+The Udacity Capstone project which provides users information on the latest and greatest upcoming games. The application fethces games from Rawg.io which is one of the best repositories containing tons of data on games. 
 
+The app follows an MVVM architecture
+
+                                                 Activity
+                                                 Fragments
+                                                View Model  
+                                                 Live Data
+                                              Games Repository
 
 ## Rubric
 
