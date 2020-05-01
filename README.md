@@ -3,4 +3,4 @@ The Udacity Capstone project which provides users information on the latest and 
 
 
 Attaching Screenshots 
-![](/Screnshots/list1.png?raw=true = 250x)
+![](/Screnshots/list1.png?raw=true =250x)
