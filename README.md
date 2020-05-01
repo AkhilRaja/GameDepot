@@ -9,6 +9,10 @@ The app follows an MVVM architecture
                                                  Live Data
                                               Games Repository
 
+A worker manager manages the game sync worker that is responsible to update the local cache of the game data in the repository.
+
+The app also contains a widget that displays the screenshots of the most popular games of 2020.
+
 ## Rubric
 
 - [x] App integrates a third-party library.
