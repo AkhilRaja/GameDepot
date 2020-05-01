@@ -1,4 +1,6 @@
-# GameDepot--Udacity-Part-5
+# GameDepot - Track your favourite games.
+## --Udacity-Part-5
+
 The Udacity Capstone project which provides users information on the latest and greatest upcoming games. The application fethces games from Rawg.io which is one of the best repositories containing tons of data on games. 
 
 The app follows an MVVM architecture
@@ -15,19 +17,12 @@ The app also contains a widget that displays the screenshots of the most popular
 
 ## Rubric
 
-- [x] App integrates a third-party library.
 - [x] App validates all input from servers and users. If data does not exist or is in the wrong format, the app logs this fact and does not crash.
 - [x] App includes support for accessibility. That includes content descriptions, navigation using a D-pad, and, if applicable, non-audio versions of audio cues.
 - [x] App keeps all strings in a strings.xml file and enables RTL layout switching on all layouts.
 - [x] App provides a widget to provide relevant information to the user on the home screen.
-
 - [x] App integrates two or more Google services. Google service integrations can be a part of Google Play Services or Firebase.
-- [x] Each service imported in the build.gradle is used in the app.
-- [x] If Identity is used, the user’s identity influences some portion of the app. If Identity was not used, student meets specifications.
-
-
 - [x] App theme extends AppCompat.
-- [x] App uses an app bar and associated toolbars.
 - [x] App uses standard and simple transitions between activities.
 - [x] App builds and deploys using the installRelease Gradle task.
 
