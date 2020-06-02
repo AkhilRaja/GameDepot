@@ -1,5 +1,5 @@
 # GameDepot - Track your favourite games.
-## --Udacity-Part-5
+## Udacity Part-5 Capstone Project
 
 The Udacity Capstone project which provides users information on the latest and greatest upcoming games. The application fethces games from Rawg.io which is one of the best repositories containing tons of data on games. 
 
